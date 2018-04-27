@@ -21,7 +21,7 @@ and if event name is provided then all listeners unsubscribe to particular event
 ```
 By event id  - EventEmitter.unsubscribe(121221212232);
 
-By event name  - EventEmitter.unsubscribe(undefined,EventName);
+By event name  - EventEmitter.unsubscribe(EventName);
 
 ```
 

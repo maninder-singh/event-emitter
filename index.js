@@ -24,8 +24,13 @@ let EventEmitter = (() => {
         return _id;
     };
 
-    let unsubscribe = (id,eventName) => {
-        if(id){
+    let unsubscribe = (eventType) => {
+        if(!eventType){
+            throw new Error("input parameter cannot be empty or null");
+        }
+
+        if(eventType.constructor === Number){
+            let id = eventType;
             // Unsubscribe listener based on id
             let _eventName = _eventsById[id];
             if(_eventName){
@@ -40,8 +45,9 @@ let EventEmitter = (() => {
             return;
         }
 
-        if(eventName){
+        if(eventType.constructor === String){
             // Unsubscribe all listeners
+            let eventName = eventType;
             if(_events.hasOwnProperty(eventName)){
                 _events[eventName] = [];
                 _eventsById = Object.keys(_eventsById).reduce((o,i) => {
